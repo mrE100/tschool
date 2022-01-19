@@ -15,6 +15,29 @@ public class Subsequence {
     @SuppressWarnings("rawtypes")
     public boolean find(List x, List y) {
         // TODO: Implement the logic here
+        if (x == null || y == null) {
+            throw new IllegalArgumentException();
+        }
+        if (y.size() < x.size()) {
+            return false;
+        }
+        int startPosition = 0;
+        int count = 0;
+        for (int i = 0; i < x.size(); i++) {
+            if (y.size() - startPosition < x.size() - i) {
+                return false;
+            }
+            for (int j = startPosition; j <y.size(); j++) {
+                if (y.get(j).equals(x.get(i))) {
+                    startPosition = j;
+                    count++;
+                    break;
+                }
+            }
+        }
+        if (count == x.size()) {
+            return true;
+        }
         return false;
     }
 }
